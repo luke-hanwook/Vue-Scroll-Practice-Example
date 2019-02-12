@@ -2,7 +2,7 @@
   <div
     v-infinite-scroll="fetchData"
     infinite-scroll-disabled="busy"
-    infinite-scroll-distance="500"
+    infinite-scroll-distance="1200"
   >
     <List :list="pokeList" />
   </div>
@@ -28,7 +28,6 @@ export default {
   methods: {
     fetchData(url = INITIAL_DOMAIN) {
       this.isLoading = true;
-      console.log(this.next);
       common
         .fetchList(this.next || url)
         .then(obj => {

@@ -29,7 +29,11 @@ export default {
       .then(data => {
         this.pokemon = data;
       })
-      .finally(_ => (this.isLoading = false));
+      .finally(_ => {
+        setTimeout(_ => {
+          this.isLoading = false;
+        }, 1200);
+      });
   }
 };
 </script>

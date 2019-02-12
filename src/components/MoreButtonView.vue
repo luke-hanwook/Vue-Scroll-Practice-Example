@@ -32,12 +32,12 @@ export default {
             this.prev = obj.prev;
             this.next = obj.next;
             this.pokeList = this.pokeList.concat(obj.list);
-          }, 200);
+          }, 600);
         })
         .finally(_ => {
           setTimeout(_ => {
             this.isLoading = false;
-          }, 200);
+          }, 600);
         });
     },
     onClickMoreBtn(e) {

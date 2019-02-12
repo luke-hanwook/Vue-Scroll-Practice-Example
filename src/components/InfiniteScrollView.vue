@@ -13,7 +13,8 @@ export default {
       pokeList: [],
       prev: "",
       next: "",
-      isLoading: false
+      isLoading: false,
+      page: 1
     };
   },
   created() {
@@ -21,6 +22,11 @@ export default {
   },
   mounted() {
     this.scroll();
+  },
+  watch: {
+    page(num) {
+      this.fetchData(this.next);
+    }
   },
   methods: {
     fetchData(url = INITIAL_DOMAIN) {
@@ -32,24 +38,24 @@ export default {
             this.prev = obj.prev;
             this.next = obj.next;
             this.pokeList = this.pokeList.concat(obj.list);
-          }, 500);
+          }, 600);
         })
         .finally(_ => {
           setTimeout(_ => {
             this.isLoading = false;
-          }, 500);
+          }, 600);
         });
     },
     scroll() {
-      window.onscroll = () => {
+      document.addEventListener("scroll", () => {
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight ===
           document.documentElement.offsetHeight;
 
         if (bottomOfWindow) {
-          this.fetchData(this.next);
+          this.page++;
         }
-      };
+      });
     }
   }
 };
